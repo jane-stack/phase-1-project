@@ -1,0 +1,18 @@
+body {
+    padding: 1rem;
+    text-align: center;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    padding: 0.5rem;
+    width: 100%;
+    color: white;
+    font-family: fantasy;
+    text-align: center;
+    background-color: black;
+}
