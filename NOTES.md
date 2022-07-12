@@ -16,3 +16,12 @@ An API that has all of the makeup brands, be able to search product brands, like
 
 ### Stretch
 * Be able to give a star review (click)
+
+
+
+overall idea: 
+    load the page and view homepage
+
+when: DOMContentLoaded
+cause: DOMContentLoaded
+effect: display homepage

@@ -1,18 +1,16 @@
-body {
-    padding: 1rem;
+#header {
+    background-color: #e8e8e8;
+    color: black;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 20px;
+    margin-top: 20px;
     text-align: center;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
-header {
-    padding: 0.5rem;
-    width: 100%;
-    color: white;
-    font-family: fantasy;
+#main {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 50px;
+    margin-top: 20px;
     text-align: center;
-    background-color: black;
+    font-size: medium;
 }
