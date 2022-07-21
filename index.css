@@ -1,16 +1,39 @@
-#header {
-    background-color: #e8e8e8;
-    color: black;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    padding: 20px;
-    margin-top: 20px;
-    text-align: center;
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    padding: 10%;
+}
+#product-list {
+    background-color: white;
+    padding-right: 30px;
+    font-family: Arial Narrow, sans-serif;
+    line-height: 1.5;
+}
+#product-container {
+    display: flex;
 }
 
-#main {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    padding: 50px;
-    margin-top: 20px;
-    text-align: center;
-    font-size: medium;
+ul {
+    list-style: none;
+}
+
+h2 {
+    font-family: Marker Felt, fantasy;
+    font-size: 50px;
+    color: white;
+}
+
+.star {
+    display: inline-block; /* align stars side by side */
+    color: #fac86b;
+    font-size: 1.5rem;
+    background-color: unset;
+    border: none;
+}
+
+.star:hover {
+    font-weight: bolder;
+    color: #faa302;
 }

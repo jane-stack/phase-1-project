@@ -1,36 +1,48 @@
+
 document.addEventListener('DOMContentLoaded', () => {
-    renderHomepage();
-    getProducts();
-})
+    const form = document.getElementById('product-form');
 
-// NODE GETTER
-const mainDiv = () => document.getElementById('main');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-// EventListeners
+        fetch(`http://makeup-api.herokuapp.com/api/v1/products.json?brand=${e.target[0].value}&product_type=${e.target[1].value}`)
+            .then(response => response.json())
+            .then(makeups => {
+                const productList = document.getElementById('product-list')
+                const starSymbol = '☆'
+                const stars = document.querySelectorAll('.star')
+                
+                productList.innerHTML = ''
+                makeups.map(makeup => {
+                    const li = document.createElement('li')
+                    const productName = document.createElement('h3')
+                    const productRating = document.createElement('h5')
+                    const productBrand = document.createElement('h5')
+                    const productPrice = document.createElement('h5')
+                    const productDescription = document.createElement('p')
+                    productName.textContent = makeup.name
+                    productBrand.textContent = makeup.brand
+                    productPrice.textContent = `Price:${' $' +makeup.price}`
+                    productRating.textContent = `Rating:${' ' + makeup.rating}`
+                    
+                    const starBtn = document.createElement('span')
+                    starBtn.innerHTML =
+                    `
+                    <div class="star">${starSymbol}</div>
+                    <div class="star">${starSymbol}</div>
+                    <div class="star">${starSymbol}</div>
+                    <div class="star">${starSymbol}</div>
+                    <div class="star">${starSymbol}</div>
+                    `
 
+                    productDescription.textContent = makeup.description
+                    const img = document.createElement('img')
+                    img.src = makeup.image_link
 
-// EventHandlers
-
-
-function renderHomepage() {
-    resetMainDiv();
-    const p = document.createElement('p');
-    p.innerText = "Please take a look at my Phase-1 Project! I am creating an application that will allow it's users to search specific makeup brands and products. User's would also be able to give the product a star rating and leave a comment regarding their thoughts on that particular products.";
-    mainDiv().appendChild(p);
-}
-
-function getProducts() {
-    const baseURL = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline";
-    
-    fetch(baseURL)
-        .then(resp => resp.json())
-        .then(data => {
-            console.log(data)
+                    li.append(productName, productBrand, productPrice, productRating, starBtn, productDescription, img, document.createElement('hr'))
+                    productList.append(li)
+                })
+            })
+            form.reset()
         })
-
-}
-
-// Helpers
-function resetMainDiv() {
-    mainDiv().innerHTML = "";
-}
+})
