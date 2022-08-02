@@ -25,7 +25,7 @@ h2 {
     color: white;
 }
 
-.star {
+.eachStar {
     display: inline-block; /* align stars side by side */
     color: #fac86b;
     font-size: 1.5rem;
@@ -33,7 +33,7 @@ h2 {
     border: none;
 }
 
-.star:hover {
+.eachStar:hover {
     font-weight: bolder;
     color: #faa302;
 }
