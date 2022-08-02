@@ -1,26 +1,34 @@
+// The DOMContentLoaded event allows the HTML document to completely load without waiting for the stylesheets, images, and subframes to load first. 
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // These variables are placed here, in the Global Scope, so that it could be accessed from anywhere in the JavaScript program via the Scope Chain. 
     const form = document.getElementById('product-form');
     const activeStar = '★';
     const inactiveStar = '☆';
-    
+
     form.addEventListener('submit', (e) => {
-        e.preventDefault(); // prevents the page from reseting
-        
+        // Here I am using a 'submit' event primarily used when a <form> is submitted.
+        e.preventDefault(); // Prevents the form from reloading.
+        // A form's defualt action is to reload, therefore preventDefault() is used to prevent an action that is otherwised handled in a specific way but may not be the best way to handle a particular situation. 
+      
+        // Fetch is the most efficient way to make a request to the server and update the DOM without reloading the webpage. This is a process refered to a AJAX (asynchronous JavaScript and XML).
+        // Below is the base URL to the data source I am using for this project. Attached to the 'fetch()' request.
+        // I am using a GET request which only requires the passing of the URL endpoint as an argument.
         fetch(`http://makeup-api.herokuapp.com/api/v1/products.json?brand=${e.target[0].value}&product_type=${e.target[1].value}`)
-        .then(response => response.json())
-        .then(makeups => renderProducts(makeups))
+        .then(response => response.json()) // converting the response from JSON.
+        .then(makeups => renderProducts(makeups)) // The function renderProducts will take care of the DOM manipulation.
         
-        form.reset(); // resets the form
+        form.reset(); // The .reset() method is used to clear all the values of the form elements.
     });
     
     const renderProducts = (makeups) => {
         const productList = document.getElementById('product-list');
-        console.log(productList);
+        // console.log(productList);
         productList.innerHTML = '';
         makeups.map(makeup => {
             const li = document.createElement('li'); // contains each product on the list
-            li.innerHTML = 
-            `
+            li.innerHTML = // Using interpolation to 
+            ` 
             <h3>${makeup.name}</h3>
             <h5>${makeup.brand}</h5>
             <h5>Price: ${makeup.price}</h5>
