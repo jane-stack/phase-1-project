@@ -21,10 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
         form.reset(); // The .reset() method is used to clear all the values of the form elements.
     });
     
+    // Here I am using an arrow function. Not too big of a deal but I was told that in React we would be using a lot of arrow functions so I decided to get some extra practice with using arrow functions. 
     const renderProducts = (makeups) => {
         const productList = document.getElementById('product-list');
+        // getting access to the element with the id of product-list.
         // console.log(productList);
-        productList.innerHTML = '';
+        productList.innerHTML = "";
+        // productList.innerHTML = " ";
+        // setting an empty string as innerHTML will remove all the children of the element.
+        
+        // Using .map() to create a new array populated from the entry provided in the form.
+        // .map() because we want a new array populated. Else, using forEach or for...of could be a better option.
         makeups.map(makeup => {
             const li = document.createElement('li'); // contains each product on the list
             li.innerHTML = // Using interpolation to 
