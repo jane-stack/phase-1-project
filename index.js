@@ -31,10 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // setting an empty string as innerHTML will remove all the children of the element.
         
         // Using .map() to create a new array populated from the entry provided in the form.
-        // .map() because we want a new array populated. Else, using forEach or for...of could be a better option.
+        // .map() because we want a new array populated. Else, using forEach or for...of could be a another option.
         makeups.map(makeup => {
             const li = document.createElement('li'); // contains each product on the list
-            li.innerHTML = // Using interpolation to 
+            li.innerHTML = // Using interpolation to add information to each li. I did it this way because it really shortens my codes tremendously. It took literally fourteen lines, instead of over thirty lines, I was able to display all the information needed for each product that gets rendered onto the page. I am not entirely confident in understanding the Big O Notation, but I do know that repetition is a big NO if codes can be abbreviated to save time and space.
+
+            // For the star buttons, I decided to create five buttons and gave them all the class attribute of 'eachStar' incase I needed to grab those buttons or any reasons. Those stars are placed inside a div with the class attribute of 'star-btns.'
             ` 
             <h3>${makeup.name}</h3>
             <h5>${makeup.brand}</h5>
@@ -51,9 +53,16 @@ document.addEventListener('DOMContentLoaded', () => {
             <img src="${makeup.image_link}"></h3>
             <hr>
             `
-            const starDiv = document.querySelector('.star-btns');
-            console.log(starDiv);
-            const starBtn = document.querySelectorAll('.eachStar');
+            // const starDiv = document.querySelector('.star-btns');
+            // console.log(starDiv);
+
+            // 
+            const starBtn = document.querySelectorAll('.eachStar'); 
+            // Placed all the stars into a variable called 'starBtn.' This variable represents each of the stars.
+            // In order to iterate through all the stars, I used the forEach() method. For each star in starBtn, and [i] representing the index of which star that was clicked, I added a 'click' event listener to listen for a click. Once a click is detected, using console.log to check my work, I was able to see the index in which star was clicked.
+            // currentStarLevel is set to i + 1 indicating that when index[0] was clicked, that will represent one star.
+            // Now, for each star in starBtn and [j] representing the number of times a specific index was clicked, if the currentStarLevel is greater or equal to the number of times a star was clicked [j] + 1 then we want the star.innerHTML to be a filled in star. Otherwise we would want it to remain a unfilled star.
+            // I used the if/else statement in order to activate or deactivate the stars.
             starBtn.forEach((star, i) => {
                 star.addEventListener('click', () => {
                     console.log(`${i} clicked!`)
@@ -68,8 +77,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             })
             
-            productList.append(li);
+            productList.append(li); // Here, I appended the (li) to the (ul) productList. 
         })
     }
     
 })
+
+//     const renderProducts = (makeups) => {
+//         const productList = document.getElementById('product-list');
+//         productList.innerHTML = '';
+//         makeups.map(makeup => {
+//         const li = document.createElement('li');
+//         const productName = document.createElement('h3');
+//         const productBrand = document.createElement('h5');
+//         const productPrice = document.createElement('h5');
+//         const productRating = document.createElement('h5');
+
+//         const starDiv = document.createElement('div');
+//         const star1 = document.createElement('button');
+//         const star2 = document.createElement('button');
+//         const star3 = document.createElement('button');
+//         const star4 = document.createElement('button');
+//         const star5 = document.createElement('button');
+//         star1.classList.add('eachStar');
+//         star2.classList.add('eachStar');
+//         star3.classList.add('eachStar');
+//         star4.classList.add('eachStar');
+//         star5.classList.add('eachStar');
+//         star1.innerText = inactiveStar;
+//         star2.innerText = inactiveStar;
+//         star3.innerText = inactiveStar;
+//         star4.innerText = inactiveStar;
+//         star5.innerText = inactiveStar;
+//         starDiv.append(star1, star2, star3, star4, star5);
+
+//         console.log(starDiv)
+
+//         const productDescription = document.createElement('p');
+//         const img = document.createElement('img');
+//         productName.textContent = makeup.name;
+//         productBrand.textContent = makeup.brand;
+//         productPrice.textContent = `Price:${' $' + makeup.price}`;
+//         productRating.textContent = `Rating:${' ' + makeup.rating}`;
+//         productDescription.textContent = makeup.description;
+//         img.src = makeup.image_link;
+//         li.append(productName, productBrand, productPrice, productRating, starDiv, productDescription, img, document.createElement('hr'));
+//         productList.append(li);
+//     })
+// }
